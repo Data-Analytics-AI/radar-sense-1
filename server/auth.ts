@@ -87,14 +87,14 @@ export function setSessionCookie(res: Response, userId: string): { expiresAt: nu
     "SameSite=Lax",
     `Max-Age=${SESSION_TTL_SECONDS}`,
   ];
-  if (isProd) parts.push("Secure");
+  if (isProd && process.env.COOKIE_SECURE !== "false") parts.push("Secure");
   res.setHeader("Set-Cookie", parts.join("; "));
   return { expiresAt };
 }
 
 export function clearSessionCookie(res: Response): void {
   const parts = [`${COOKIE_NAME}=`, "HttpOnly", "Path=/", "SameSite=Lax", "Max-Age=0"];
-  if (process.env.NODE_ENV === "production") parts.push("Secure");
+  if (process.env.NODE_ENV === "production" && process.env.COOKIE_SECURE !== "false") parts.push("Secure");
   res.setHeader("Set-Cookie", parts.join("; "));
 }
 

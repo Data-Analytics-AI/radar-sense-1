@@ -19,6 +19,8 @@ RUN npm install --no-audit --no-fund --loglevel=error
 
 # Copy source and build the React frontend → dist/public
 COPY . .
+ARG VITE_SHOW_DEMO_ACCOUNTS
+ENV VITE_SHOW_DEMO_ACCOUNTS=$VITE_SHOW_DEMO_ACCOUNTS
 RUN npm run build
 
 # Strip dev dependencies for the runtime stage

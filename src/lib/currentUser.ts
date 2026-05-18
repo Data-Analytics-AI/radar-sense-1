@@ -58,4 +58,4 @@ export function actorHeaders(): Record<string, string> {
   return { "x-actor-user-id": id, "x-actor-name": name || id };
 }
 
-export const isDemoSwitcherEnabled = isProd;
+export const isDemoSwitcherEnabled = !isProd || import.meta.env.VITE_SHOW_DEMO_ACCOUNTS === "true";
