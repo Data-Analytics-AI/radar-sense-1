@@ -1,0 +1,755 @@
+# ✅ MASTER PROMPT — Add Enterprise Customer Intelligence Module to SnapFort
+
+## SYSTEM ROLE
+
+You are a:
+
+* Senior Banking Product Architect
+* AML/KYC Compliance Specialist
+* Fraud Intelligence Platform Designer
+* Enterprise UX Engineer
+* Financial Crime Investigation Systems Expert
+
+Design and implement a **Customer Intelligence & 360° Risk Profile Module** for the existing SnapFort Fraud Detection & AML platform.
+
+This module must feel like a **Tier-1 banking intelligence platform**, comparable to:
+
+* NICE Actimize
+* Feedzai
+* SAS AML
+* Oracle FCCM
+* Featurespace
+
+The module must support:
+
+* Retail banking customers
+* Corporate customers
+* High-risk entities
+* AML/KYC investigations
+* Fraud intelligence analysis
+
+This is NOT a simple CRM page.
+
+It is a:
+
+👉 Customer Risk Intelligence System
+👉 Investigator Intelligence Workspace
+👉 AML/KYC Operational Hub
+
+---
+
+# 🎯 PRIMARY OBJECTIVE
+
+Create a comprehensive **Customer Section** that enables analysts, investigators, fraud teams, compliance officers, and AML teams to:
+
+* Search and analyze customers
+* Understand customer risk exposure
+* Review KYC/KYB profiles
+* Monitor behavior and transactions
+* View relationships and fraud networks
+* Investigate suspicious activity
+* Run sanctions/PEP screening
+* Analyze AI-generated insights
+
+The module must support:
+
+* Real-time updates
+* AI-assisted investigations
+* Enterprise-grade workflows
+* Full auditability
+
+---
+
+# 🧭 MODULE STRUCTURE
+
+Create:
+
+# 1️⃣ CUSTOMER LIST PAGE (NEW)
+
+## Sidebar Navigation
+
+Add new menu item:
+
+```text id="o3e5w0"
+Customers
+```
+
+Subsections:
+
+* All Customers
+* Individual Customers
+* Corporate Customers
+* High-Risk Customers
+* PEP Customers
+* Watchlisted Customers
+
+---
+
+# 2️⃣ CUSTOMER LIST / CUSTOMER DIRECTORY PAGE
+
+## Page Purpose
+
+This page acts as the master customer intelligence directory.
+
+---
+
+# 🔍 TOP SEARCH & FILTER BAR
+
+Add enterprise-grade filtering.
+
+### Global Search
+
+Search by:
+
+* Name
+* Account number
+* BVN
+* NIN
+* CAC number
+* Customer ID
+* Phone number
+* Email
+* Device ID
+* IP Address
+
+---
+
+### Advanced Filters
+
+#### Customer Type
+
+* Individual
+* Corporate
+
+#### Risk Rating
+
+* Low
+* Medium
+* High
+* Critical
+
+#### KYC Status
+
+* Verified
+* Pending
+* Failed
+* Expired
+
+#### Screening Status
+
+* Cleared
+* PEP Match
+* Sanctions Match
+* Watchlist Match
+
+#### Fraud Indicators
+
+* Under Investigation
+* Linked to Fraud
+* Dormant
+* Velocity Risk
+
+#### Geography
+
+* Country
+* State
+* High-risk jurisdiction
+
+#### Channels Used
+
+* Mobile
+* POS
+* ATM
+* Internet Banking
+* Branch
+
+#### Date Filters
+
+* Onboarding date
+* Last transaction date
+* Last screening date
+
+---
+
+# 📊 CUSTOMER TABLE (ENTERPRISE VIEW)
+
+Display customers in a professional intelligence table.
+
+---
+
+## Required Columns
+
+### Core Identity
+
+* Customer Name
+* Customer ID
+* Customer Type
+* BVN/CAC Number
+* Primary Account
+
+---
+
+### Risk & Compliance
+
+* Risk Score (0–100)
+* Risk Rating Badge
+* KYC Status
+* Screening Status
+* PEP Flag
+* Sanctions Flag
+
+---
+
+### Behavioral Intelligence
+
+* Monthly Transaction Volume
+* Avg Transaction Value
+* Preferred Channel
+* Cross-border Activity
+
+---
+
+### Operational Intelligence
+
+* Open Cases
+* Alerts Count
+* Last Activity
+* Assigned Analyst
+
+---
+
+### UI Features
+
+* Sorting
+* Multi-select
+* Export
+* Bulk screening
+* Bulk risk reassessment
+* Saved filters
+* Pagination
+* Real-time updates
+
+---
+
+# 🎨 VISUAL INDICATORS
+
+Use:
+
+* Risk-colored badges
+* Trend arrows
+* Alert indicators
+* AI recommendation icons
+
+---
+
+# 3️⃣ CUSTOMER DETAILS PAGE (360° CUSTOMER PROFILE)
+
+When a customer is selected, open a comprehensive customer intelligence workspace.
+
+---
+
+# PAGE HEADER
+
+Display:
+
+### Identity Summary
+
+* Customer Name
+* Customer Type
+* Risk Rating
+* Current Risk Score
+* KYC Status
+* Screening Status
+
+---
+
+### Quick Actions
+
+Buttons:
+
+* Run Screening
+* Generate STR
+* Escalate Case
+* Freeze Account
+* Assign Investigator
+* Export Customer Report
+* Recalculate Risk
+
+---
+
+### Top Risk Banner
+
+AI-generated summary:
+
+Example:
+
+```text id="owrl40"
+Customer risk increased by 22% in the last 14 days due to:
+• Cross-border transfers
+• New device activity
+• Velocity anomalies
+• Linked account flagged in fraud case
+```
+
+---
+
+# 🧩 CUSTOMER DETAILS TABS
+
+---
+
+# TAB 1️⃣ — CUSTOMER PROFILE / KYC INTELLIGENCE
+
+## Individual Customer View
+
+Display:
+
+### Personal Information
+
+* Full Name
+* DOB
+* Gender
+* Nationality
+* Address
+* Phone
+* Email
+
+---
+
+### Regulatory IDs
+
+* BVN
+* NIN
+* Passport
+* Tax ID
+
+---
+
+### KYC Information
+
+* Verification status
+* Verification date
+* Document uploads
+* Face match score
+* Identity confidence score
+
+---
+
+### Risk Intelligence
+
+* Risk Score
+* Risk Rating
+* Risk Drivers
+* Expected behavior profile
+
+---
+
+### Screening Intelligence
+
+* PEP Matches
+* Sanctions Matches
+* Watchlist Matches
+* Match confidence
+* Screening history
+
+---
+
+### Behavioral Intelligence
+
+* Preferred transaction channels
+* Most active hours
+* Device usage
+* Geo-location patterns
+* Merchant patterns
+
+---
+
+### AI Risk Summary Panel
+
+Example:
+
+```text id="9c9rq3"
+Customer exhibits increased transaction activity outside expected behavioral profile.
+Cross-border transactions increased 340% in the last 30 days.
+AI recommends enhanced due diligence review.
+```
+
+---
+
+## Corporate Customer View
+
+Include additional fields:
+
+### Business Information
+
+* CAC Registration Number
+* Industry
+* Incorporation Date
+* Business Address
+
+---
+
+### Corporate Structure
+
+* Directors
+* Shareholders
+* UBOs (Ultimate Beneficial Owners)
+
+---
+
+### Corporate Risk Intelligence
+
+* Shell company indicators
+* High-risk jurisdictions
+* Complex ownership structure
+
+---
+
+# TAB 2️⃣ — TRANSACTIONS
+
+Display enterprise-grade transaction intelligence.
+
+---
+
+# TRANSACTION TABLE
+
+Columns:
+
+* Transaction ID
+* Date/Time
+* Amount
+* Currency
+* Channel
+* Merchant
+* Country
+* Risk Score
+* Fraud Indicators
+* Status
+
+---
+
+### Features
+
+* Real-time transaction stream
+* Transaction heatmap
+* Filtering
+* AI anomaly highlights
+
+---
+
+# TRANSACTION DETAILS DRAWER
+
+Clicking transaction opens full transaction intelligence view.
+
+Include:
+
+### Transaction Metadata
+
+* Device
+* IP Address
+* Geo-location
+* Session ID
+* Linked accounts
+
+---
+
+### Fraud Intelligence
+
+* Rule triggers
+* AI risk explanation
+* Velocity indicators
+* Behavioral deviation
+
+---
+
+### Relationship Mapping
+
+* Linked accounts
+* Shared devices
+* Shared IPs
+* Merchant relationships
+
+---
+
+# TAB 3️⃣ — LINKS / RELATIONSHIPS
+
+Create visual fraud intelligence network.
+
+---
+
+## Relationship Categories
+
+* Devices
+* Accounts
+* Cards
+* Merchants
+* IP Addresses
+* Beneficiaries
+* Related Customers
+
+---
+
+# NETWORK GRAPH VIEW
+
+Interactive graph showing:
+
+* Fraud rings
+* Shared infrastructure
+* Mule networks
+* Device sharing
+
+---
+
+### Features
+
+* Expand nodes
+* Risk highlighting
+* Entity clustering
+* Timeline analysis
+
+---
+
+# TAB 4️⃣ — CASES & INVESTIGATIONS
+
+Display all linked:
+
+* Fraud cases
+* AML investigations
+* STR filings
+* Alerts
+
+---
+
+## Case Table
+
+Columns:
+
+* Case ID
+* Type
+* Severity
+* Status
+* Assigned Analyst
+* SLA Timer
+* Last Updated
+
+---
+
+### Features
+
+* Open case directly
+* Escalate case
+* Add notes
+* Attach evidence
+
+---
+
+# TAB 5️⃣ — SCREENING & COMPLIANCE HISTORY
+
+Display:
+
+* Screening runs
+* PEP results
+* Sanctions results
+* Watchlist history
+* STR/CTR history
+
+---
+
+### Add:
+
+* “Run Screening” button
+* Continuous screening toggle
+* Screening confidence trend
+
+---
+
+# TAB 6️⃣ — AI INSIGHTS & COPILOT ⭐
+
+Create an AI-powered analyst assistant.
+
+---
+
+# AI CUSTOMER ANALYST
+
+Allow analysts to ask:
+
+* “Why did this customer risk increase?”
+* “Summarize suspicious behavior.”
+* “Compare current behavior to baseline.”
+* “Generate customer intelligence summary.”
+* “Show fraud patterns.”
+* “Explain linked entities.”
+
+---
+
+# AI OUTPUTS
+
+Generate:
+
+### Behavioral Analysis
+
+### Fraud Risk Narrative
+
+### AML Risk Assessment
+
+### Suggested Actions
+
+### STR Draft Assistance
+
+---
+
+Example:
+
+```text id="rvzt8o"
+This customer demonstrates abnormal transaction behavior inconsistent with declared income profile.
+Primary risk indicators:
+• Rapid velocity increase
+• Multiple device usage
+• Cross-border transfers to high-risk jurisdiction
+• Shared device with flagged account
+Recommendation:
+• Trigger EDD review
+• Restrict transfer threshold
+• Monitor beneficiary accounts
+```
+
+---
+
+# 4️⃣ RISK SCORING ENGINE INTEGRATION
+
+Customer page must integrate with:
+
+* Fraud scoring engine
+* AML risk engine
+* Behavioral analytics
+* Sanctions screening engine
+
+---
+
+# 5️⃣ REAL-TIME EVENT SYSTEM
+
+Enable:
+
+* Live transaction updates
+* Real-time risk recalculation
+* Real-time alerts
+* WebSocket event streaming
+
+---
+
+# 6️⃣ AUDIT & COMPLIANCE REQUIREMENTS
+
+Track:
+
+* User actions
+* Screening runs
+* Risk changes
+* Investigator actions
+
+Maintain immutable audit trail.
+
+---
+
+# 7️⃣ SECURITY & ACCESS CONTROL
+
+Implement RBAC:
+
+### Roles
+
+* Fraud Analyst
+* AML Analyst
+* Compliance Officer
+* Investigator
+* Supervisor
+* Admin
+
+---
+
+### Sensitive Data Protection
+
+Mask:
+
+* BVN
+* NIN
+* Account numbers
+
+---
+
+# 8️⃣ PERFORMANCE REQUIREMENTS
+
+Must support:
+
+* Millions of customers
+* Real-time search
+* ElasticSearch indexing
+* Fast filtering
+* Lazy loading
+
+---
+
+# 9️⃣ TECHNICAL REQUIREMENTS
+
+Frontend:
+
+* React / Next.js
+* Recharts / ECharts
+* D3.js / Cytoscape for graph visualization
+
+Backend:
+
+* FastAPI microservices
+
+Services:
+
+* customer-service
+* risk-service
+* screening-service
+* graph-service
+* ai-insight-service
+
+Database:
+
+* PostgreSQL
+* ElasticSearch
+* Redis
+
+---
+
+# 🔟 DESIGN REQUIREMENTS
+
+UI must remain consistent with existing SnapFort design system:
+
+* Enterprise banking UI
+* Clean spacing
+* Card-based layout
+* Professional typography
+* Risk-colored indicators
+* Minimal clutter
+* Responsive layout
+
+---
+
+# ✅ FINAL DELIVERABLES
+
+Generate:
+
+1. Customer List Page
+2. Customer Details Workspace
+3. All tabs and workflows
+4. APIs and schemas
+5. Graph relationship engine
+6. AI insight engine
+7. Risk integration logic
+8. Real-time event architecture
+9. Enterprise-grade UI/UX
+10. Production-ready implementation
+
+---
+
+# 🚀 END GOAL
+
+Transform SnapFort into a:
+
+👉 Customer Risk Intelligence Platform
+👉 AML Investigation Workspace
+👉 Fraud Intelligence Command Center
+👉 CBN-Compliant Customer Monitoring System

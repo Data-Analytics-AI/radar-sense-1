@@ -1,0 +1,130 @@
+You are working on SnapFort (Fraud Detection & AML).
+On the User & Access Management page, the rows in the users table are not clickable, so users cannot expand/open the User Details drawer.
+
+Objective
+
+Make each user row clickable and ensure it opens a Right-Side User Detail Drawer (or existing details panel) with the selected user’s information.
+
+This must work for:
+
+Clicking anywhere on the row
+
+Clicking the right-side chevron/arrow
+
+Keyboard navigation (Enter/Space on focused row)
+
+1) Diagnose & Fix the Click Handling (Required)
+Fix common causes:
+
+pointer-events: none on row or parent container
+
+overlaying div capturing clicks (e.g., invisible absolute-position layers)
+
+table rows are <tr> with no click binding
+
+click handler attached to child element only (not row)
+
+event propagation being stopped unintentionally
+
+z-index layering preventing interaction
+
+Required behavior:
+
+Row hover must show pointer cursor
+
+Row hover must highlight background subtly
+
+No dead zones across the row
+
+The right-side chevron must also trigger the same open action
+
+2) Implement a Single Source of Truth for “Selected User”
+
+Add state:
+
+selectedUser
+
+isDrawerOpen
+
+When a row is clicked:
+
+setSelectedUser(user)
+
+setIsDrawerOpen(true)
+
+Drawer loads user details (show loading state if fetched async)
+
+If details are loaded from backend:
+
+Fetch GET /api/users/:id on selection
+
+Handle loading + error states cleanly
+
+3) Interaction Specification (Must Match)
+Row click
+
+✅ Opens drawer
+✅ Updates drawer content
+✅ Scroll remains where it is
+✅ Does not navigate away
+
+Chevron click (right side)
+
+✅ Same behavior as row click
+✅ Must not require precise clicking
+
+Close behavior
+
+Close button and Esc should close drawer
+
+Clicking outside drawer closes (optional but preferred)
+
+4) Accessibility & Keyboard Support (Required)
+
+Each row must be focusable (tabIndex=0)
+
+Enter or Space triggers open drawer
+
+Use aria-expanded and aria-controls if applicable
+
+5) UI Consistency (Required)
+
+Keep the existing design (SnapFort theme)
+
+Add:
+
+cursor: pointer
+
+hover style
+
+active row highlight when drawer open for that user
+
+6) Output Required
+
+Identify what prevented clicks (CSS or DOM overlay or missing handler)
+
+Show the specific files/components changed
+
+Confirm that:
+
+clicking row works
+
+clicking chevron works
+
+drawer opens with correct user
+
+keyboard open works
+
+Acceptance Tests (Must Pass)
+
+Click any user row → drawer opens with that user
+
+Click the chevron on any row → same result
+
+Press Tab to focus a row → press Enter → opens drawer
+
+No console errors
+
+No blocked clicks due to overlays
+
+Implement the fix now across the User Management page and any shared table component used by other pages.

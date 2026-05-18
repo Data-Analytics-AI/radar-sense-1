@@ -1,0 +1,316 @@
+You are working on SnapFort, an enterprise Fraud Detection & AML platform.
+The AI Investigation Assistant currently renders responses as raw text/markdown, which is not analyst-friendly.
+
+Goal
+
+Implement a context-aware AI response system that:
+
+Detects the intent of each AI response (transaction analysis, customer analysis, SAR draft, analytics summary, case summary, general)
+
+Maps the response to the correct UI layout (cards, document editor, charts, timeline, etc.)
+
+Falls back gracefully when intent is unclear
+
+Works across all assistant queries and suggested prompts
+
+Do not change the model behavior unless needed for formatting. Focus on renderer + schema.
+
+1) IMPLEMENT A UNIVERSAL RESPONSE ENVELOPE (FRONTEND + BACKEND)
+
+All AI responses must be wrapped into a consistent envelope:
+
+{
+  "intent": "transaction_analysis | customer_analysis | sar_draft | analytics_summary | case_summary | general_answer",
+  "title": "string",
+  "summary": "string",
+  "confidence": 0.0,
+  "entities": {
+    "transaction_id": "string|null",
+    "customer_id": "string|null",
+    "case_id": "string|null"
+  },
+  "sections": [
+    {
+      "type": "risk_factors | table | bullets | timeline | chart | document | metrics | json",
+      "heading": "string",
+      "items": []
+    }
+  ],
+  "actions": [
+    { "type": "create_case | add_to_case | draft_sar | view_customer | open_graph | export", "label": "string", "payload": {} }
+  ],
+  "raw_text": "original model output"
+}
+
+
+If the model cannot return JSON reliably, implement a post-processor that converts plain text into this envelope.
+
+2) INTENT DETECTION (MUST BE RELIABLE)
+
+Implement intent detection using a hybrid approach:
+
+A) Primary: Explicit Intent Tag (Preferred)
+
+Update the AI system prompt to return:
+
+INTENT: <intent_type>
+
+Then output in JSON using the envelope above
+
+B) Secondary: Heuristic Classifier (Fallback)
+
+If intent missing or JSON invalid, detect intent based on user prompt + response content:
+
+Rules (examples)
+
+If mentions TXN- / “transaction” / “flagged” / “risk drivers” → transaction_analysis
+
+If mentions CUST- / “customer behavior” / “peer group” → customer_analysis
+
+If mentions “Draft SAR” / “SAR narrative” / “suspicious activity report” → sar_draft
+
+If mentions “this week” / “trend” / “rate” / “top indicators” / “distribution” → analytics_summary
+
+If mentions “case” / “timeline” / “escalated” / “assigned analyst” → case_summary
+
+Else → general_answer
+
+Return a confidence score:
+
+0.9+ for clear matches
+
+0.6–0.8 for partial
+
+<0.6 triggers “general_answer” fallback renderer
+
+3) UI MAPPING (ROUTE TO THE RIGHT VIEW)
+
+Create a single renderer entry point:
+
+AIResponseRenderer({ envelope })
+
+It must map intents to UI:
+
+Intent → UI View Mapping
+1) transaction_analysis → TransactionInvestigationView
+
+Layout:
+
+Header card (Transaction ID, Risk score badge, Confidence, Status)
+
+Risk Drivers cards (severity, explanation, evidence)
+
+Expandable “Why it matters” per driver
+
+“Similar transactions” list (optional)
+
+Action buttons:
+
+Create Case
+
+Add to Existing Case
+
+View Transaction
+
+Draft SAR
+
+2) customer_analysis → CustomerRiskProfileView
+
+Layout:
+
+Customer header (Customer ID, overall risk score, active cases)
+
+Pattern section (structuring, velocity, geo, device)
+
+Peer comparison mini-table
+
+Recent anomalies list
+
+Actions:
+
+View Customer
+
+Open Graph Network
+
+Create Case
+
+Draft SAR
+
+3) sar_draft → SARDocumentView
+
+Layout:
+
+Document editor-style view (not chat bubbles)
+
+Structured SAR sections:
+
+Subject Information
+
+Suspicious Activity Summary
+
+Transactions & Evidence
+
+Narrative
+
+Recommended Actions
+
+Controls:
+
+Copy
+
+Export PDF
+
+Save draft to Case
+
+Version history (optional)
+
+4) analytics_summary → AnalyticsInsightView
+
+Layout:
+
+KPI strip (Fraud rate, Alerts, False positives, Loss prevented)
+
+One or two charts (trend + distribution)
+
+“Top drivers” ranked list
+
+Actions:
+
+Open Analytics page
+
+Export report
+
+Create investigation case from insight
+
+5) case_summary → CaseSummaryTimelineView
+
+Layout:
+
+Case header (Case ID, type, severity, SLA)
+
+Timeline of events
+
+Linked entities (transactions, customer, merchants)
+
+AI recommendation box (neutral tone)
+
+Actions:
+
+Open Case
+
+Draft SAR
+
+Export case summary
+
+6) general_answer → StructuredAnswerView
+
+Layout:
+
+Clean typography
+
+Headings + bullet grouping
+
+No markdown artifacts
+
+Optional “Key takeaways” box
+
+4) RESPONSE PARSING (REMOVE RAW MARKDOWN)
+
+Implement a parser that:
+
+strips markdown tokens (###, **, -, etc.)
+
+converts numbered lists to structured items
+
+extracts sections by headings
+
+detects tables if present
+
+detects entities like TXN-xxxx, CUST-xxxx, CASE-xxxx
+
+If JSON is valid, skip parsing and just render.
+
+5) CHAT UX RULES (IMPORTANT)
+
+Preserve chat history (user message + assistant response card)
+
+Each assistant message should render as:
+
+A compact header (“AI Response: Transaction Investigation”)
+
+The correct view component inside message bubble/card
+
+Keep the “Suggested Queries” panel working
+
+Keep “Clear Chat” working
+
+Auto-scroll to newest message
+
+Add loading skeleton while response is being fetched
+
+Add graceful error UI if AI response fails
+
+6) BACKEND ENDPOINTS (MINIMAL)
+
+If needed, update backend response from /api/ai/chat to return the envelope.
+
+Add:
+
+POST /api/ai/chat
+
+input: { message, context?: { transaction_id, customer_id, case_id } }
+
+output: envelope JSON
+
+No heavy refactors. Keep existing Azure OpenAI integration.
+
+7) QUALITY REQUIREMENTS
+
+No broken rendering when intent is wrong → fallback safely
+
+Must render consistently for:
+
+“Why was transaction TXN-xxx flagged?”
+
+“Show structuring patterns for CUST-xxx”
+
+“Draft SAR narrative for CASE-xxx”
+
+“What are top fraud indicators this week?”
+
+“Summarize this case”
+
+Must be enterprise-grade:
+
+clean spacing
+
+neutral tone
+
+explainable
+
+auditable wording
+
+8) OUTPUT REQUIRED
+
+Files changed (frontend + backend)
+
+New components created
+
+Intent detection logic explanation
+
+Example envelope responses for each intent
+
+Confirmation that the UI renders correctly per intent
+
+ACCEPTANCE TESTS (MUST PASS)
+
+✅ A transaction query renders TransactionInvestigationView (risk driver cards)
+✅ A SAR query renders SARDocumentView (structured editable doc)
+✅ A weekly trends query renders AnalyticsInsightView (KPIs + chart + ranked drivers)
+✅ Customer query renders CustomerRiskProfileView
+✅ Case query renders CaseSummaryTimelineView
+✅ Unknown query renders StructuredAnswerView
+✅ No markdown artifacts are visible in UI
+✅ No click interactions break in chat
+
+Implement this now in the SnapFort Replit codebase.

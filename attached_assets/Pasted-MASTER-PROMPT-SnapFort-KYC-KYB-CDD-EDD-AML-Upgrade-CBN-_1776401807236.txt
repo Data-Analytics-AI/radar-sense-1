@@ -1,0 +1,305 @@
+MASTER PROMPT — SnapFort KYC/KYB/CDD/EDD + AML Upgrade (CBN-Compliant)
+SYSTEM ROLE
+
+You are a:
+
+Senior AML Compliance Architect
+Nigerian Banking Regulatory Expert (CBN/NFIU/NIBSS)
+Fraud Detection & Risk Systems Engineer
+Full-Stack Engineer (Enterprise Financial Systems)
+
+Upgrade SnapFort into a:
+
+👉 Full AML + KYC + Fraud + Compliance Platform
+
+This must be:
+
+CBN compliant
+NFIU reporting ready
+Real-time + auditable
+Production-grade (NOT demo)
+🎯 OBJECTIVE
+
+Extend SnapFort to support:
+
+KYC (Individuals)
+KYB (Businesses)
+CDD (Customer Due Diligence)
+EDD (Enhanced Due Diligence)
+Sanctions & PEP Screening
+Regulatory Reporting (STR, CTR)
+Fraud Register & Audit Logs
+🧩 NEW CORE MODULES TO BUILD
+1️⃣ KYC / KYB MANAGEMENT MODULE (NEW PAGE)
+Page: Customer Onboarding & Identity Verification
+Features
+👤 Individual KYC
+
+Capture:
+
+Full Name
+Date of Birth
+Address (with geolocation)
+Phone, Email
+BVN (MANDATORY)
+NIN (optional but supported)
+Passport / ID upload
+Integrations
+BVN verification API (NIBSS)
+Identity validation service
+Face match (selfie vs ID)
+🏢 Business KYB
+
+Capture:
+
+Company Name
+CAC Registration Number
+Business Address
+Industry
+Directors & Shareholders
+Ultimate Beneficial Owners (UBOs)
+
+Upload:
+
+CAC documents
+Incorporation certificates
+🧠 AI Enhancements
+Auto-extract KYC data from documents
+Name similarity matching
+Duplicate identity detection
+Risk Output
+
+Each customer gets:
+
+{
+  "kyc_status": "verified | pending | failed",
+  "identity_confidence_score": 0-100,
+  "fraud_risk_flag": true/false
+}
+2️⃣ CUSTOMER RISK PROFILING ENGINE (CDD)
+Integrate into existing system
+
+Automatically assign:
+
+Low Risk
+Medium Risk
+High Risk
+Risk Factors
+Geography
+Transaction behavior
+Occupation / industry
+Channel usage
+Historical fraud signals
+Capture:
+Source of Funds
+Expected transaction volume
+Expected transaction frequency
+Output
+{
+  "risk_level": "LOW | MEDIUM | HIGH",
+  "expected_behavior": {
+    "monthly_volume": value,
+    "transaction_types": []
+  }
+}
+3️⃣ ENHANCED DUE DILIGENCE (EDD MODULE)
+Integrate into Cases Page (Investigator Workflow)
+
+Trigger EDD when:
+
+PEP detected
+High-value transaction
+Cross-border activity
+High-risk jurisdiction
+Suspicious pattern
+EDD Workflow UI
+
+Add to Case Management:
+
+EDD Required Badge
+Escalation flow
+Approval workflow
+EDD Data Collection
+Source of Wealth
+Supporting documents
+Relationship mapping
+Linked accounts/entities
+Approval System
+Analyst → Senior Analyst → Compliance Officer
+4️⃣ SANCTIONS & PEP SCREENING ENGINE (NEW)
+Page: Screening & Watchlist Monitoring
+Integrations
+UN Sanctions List
+Local Nigerian Watchlists
+PEP databases
+Features
+Real-time screening at onboarding
+Continuous screening (daily batch)
+Name fuzzy matching
+Alias detection
+Output
+{
+  "match_found": true,
+  "match_type": "PEP | SANCTION",
+  "confidence": 0-100,
+  "action_required": true
+}
+5️⃣ TRANSACTION MONITORING ENHANCEMENT
+Upgrade existing fraud engine
+
+Add CBN-specific rules:
+
+🚨 Required Detection Rules
+Large transaction spikes
+Velocity anomalies
+Structuring (smurfing)
+Geo anomalies
+Profile deviation
+Link to CDD Profile
+
+System must check:
+
+Transaction vs Expected Behavior
+
+If mismatch → trigger alert
+
+6️⃣ REGULATORY REPORTING MODULE (NEW PAGE)
+Page: Compliance & Regulatory Reporting
+STR (Suspicious Transaction Reports)
+Auto-generate STR
+Editable before submission
+Submission deadline: 24 hours
+CTR (Currency Transaction Reports)
+
+Auto-flag:
+
+₦5M+ (individual)
+₦10M+ (corporate)
+Report Format
+NFIU compliant
+Export as:
+PDF
+XML
+API submission ready
+Dashboard Widgets
+STR pending submissions
+CTR alerts
+Reporting SLA countdown
+7️⃣ FRAUD REGISTER (MANDATORY BY CBN)
+Page: Fraud Registry
+
+Maintain:
+
+All fraud incidents
+Linked accounts
+Amount lost/saved
+Resolution status
+Features
+Searchable database
+Case linkage
+Audit trail
+Export for CBN reporting
+8️⃣ NIBSS INTEGRATION LAYER
+API Integration Module
+
+Support:
+
+BVN verification
+Fraud reporting sync
+Interbank fraud alerts
+9️⃣ DASHBOARD ENHANCEMENTS
+
+Add:
+
+New KPIs
+Verified vs Unverified Customers
+High-Risk Customers Count
+PEP Matches
+STR Submitted (24h compliance)
+CTR Flags
+Fraud Loss vs Prevented
+🔟 ALERTS & CASE MANAGEMENT UPGRADE
+
+Add:
+
+KYC Risk Alerts
+PEP Match Alerts
+Sanction Alerts
+EDD Required Alerts
+Case Page Enhancements
+
+Add tabs:
+
+KYC Profile
+Risk Score Breakdown
+Transaction History
+Network Graph
+Documents
+EDD Notes
+Regulatory Flags
+🧠 AI LAYER (CRITICAL)
+
+Integrate Azure OpenAI:
+
+Features
+KYC document summarization
+Fraud explanation
+STR auto-drafting
+Risk reasoning
+
+Example:
+
+"This customer is high risk due to:
+- Cross-border transactions
+- PEP match confidence 82%
+- Transaction behavior inconsistent with profile"
+🔐 SECURITY & COMPLIANCE
+
+Implement:
+
+Role-based access:
+Analyst
+Compliance Officer
+Admin
+Audit logs (immutable)
+Data encryption
+Sensitive data masking (BVN, NIN)
+⚙️ TECH REQUIREMENTS
+
+Frontend:
+
+React / Next.js
+Modular pages
+Dynamic forms (KYC/KYB)
+
+Backend:
+
+FastAPI
+Microservices:
+KYC Service
+Risk Engine
+Screening Service
+Reporting Service
+
+Database:
+
+PostgreSQL (core)
+ElasticSearch (search)
+Redis (real-time)
+📡 REAL-TIME REQUIREMENTS
+WebSockets for alerts
+Event-driven fraud detection
+Streaming ingestion
+✅ FINAL OUTPUT REQUIREMENTS
+
+Replit/Claude must generate:
+
+New pages (KYC, KYB, Reporting, Screening, Fraud Registry)
+Updated existing pages (Dashboard, Alerts, Cases)
+Backend APIs for all modules
+Data models/schema
+Risk scoring logic
+Workflow engines (EDD, approvals)
+Integration stubs (BVN, NIBSS, sanctions APIs)
+AI integration layer
+Production-ready UI/UX

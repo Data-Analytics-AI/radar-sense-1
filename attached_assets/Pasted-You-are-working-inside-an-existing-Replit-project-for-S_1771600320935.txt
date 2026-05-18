@@ -1,0 +1,534 @@
+You are working inside an existing Replit project for SnapFort (Fraud Detection & AML Intelligence Platform).
+
+Objective
+
+Upgrade the current Analytics & Reporting page to be significantly more detailed, insightful, actionable, and interactive, suitable for:
+
+Fraud Ops Leads
+
+AML/Compliance Officers
+
+Risk Managers
+
+Internal Audit / Regulators
+
+Platform Admins
+
+Do not rebuild the entire app. Enhance the existing analytics page UI + functionality. Maintain the current UI style (clean, bank-grade, calm). Keep everything explainable and audit-safe.
+
+0) Core Requirements (Must Implement)
+A) Page Layout + Global Controls
+
+Keep the page title “Analytics & Reporting”.
+
+Add a global control bar (top-right) that applies to all tabs:
+
+Time range: 24h / 7d / 30d / 90d / Custom (date picker)
+
+Tenant (if multi-tenant) dropdown (optional, only if app supports)
+
+Channel selector (All / POS / Web / Mobile / ATM / Branch)
+
+Country selector (All + searchable)
+
+Export: PDF / CSV (for tables) / PNG (for charts)
+
+“Last updated” timestamp
+
+Ensure filters update all KPIs + charts + tables in real time (client state + API query params).
+
+B) Drilldown & Row/Chart Interactions (Critical)
+
+Make analytics clickable to support investigations:
+
+Clicking a KPI card opens a side drawer with:
+
+definition, formula, and contributing breakdown
+
+top drivers (top merchants, countries, rules, devices)
+
+a “View transactions” CTA that deep-links to Transactions page with filters pre-applied
+
+Clicking any chart segment / bar / point opens:
+
+contextual breakdown + recommended actions (in a drawer)
+
+a “Create case” CTA when relevant
+
+All tables:
+
+row click opens a drawer detail view (auditable evidence + links)
+
+include a chevron at row end as affordance
+
+The Executive Summary bullets should be clickable → open evidence drawer with supporting charts/queries.
+
+C) Data Contract & API Endpoints
+
+Implement/extend backend endpoints (or mock if not available yet) to power analytics:
+
+/api/analytics/summary
+
+/api/analytics/fraud
+
+/api/analytics/aml
+
+/api/analytics/models
+
+/api/analytics/rules
+
+/api/analytics/geography
+
+/api/analytics/channels
+
+/api/analytics/users ✅ NEW
+Each endpoint must accept query params:
+
+from, to
+
+channel
+
+country
+
+optional: tenantId
+
+Return structured JSON with:
+
+KPI values + deltas
+
+chart series
+
+table rows
+
+definitions (tooltip strings)
+If real data is unavailable, generate realistic seeded sample data consistent with the rest of SnapFort.
+
+1) Tabs (Enhance Existing + Add New)
+
+Keep existing tabs:
+
+Fraud
+
+AML
+
+Models
+
+Rules
+
+Geography
+
+Channels
+
+Add NEW tabs:
+
+Users (User Analytics) ✅
+
+Operations (SLA & Workflow) ✅
+
+Audit (System & Access) ✅ (can be restricted to Admin/Auditor role)
+
+2) Executive Summary (Upgrade)
+
+The Executive Summary block must become:
+
+Evidence-backed insights: each bullet has:
+
+severity dot (info / warning / critical)
+
+metric reference (e.g., “+18% WoW”)
+
+“View evidence” link
+
+Add a second section: Recommended Actions (3–5 items)
+
+each action links to where it can be taken (Rules page, Cases, Transactions filters, Model monitor)
+
+All summary statements must be factual, explainable, and non-marketing.
+
+3) Fraud Tab (More Detailed + Actionable)
+KPIs
+
+Fraud detection rate (with definition)
+
+Fraud prevented value
+
+Confirmed fraud value (actual loss)
+
+False positive rate
+
+Avg time to detect (TTD)
+
+Avg time to contain (TTC)
+
+Charts
+
+Fraud Trend (Detected vs Prevented vs Actual Loss) over time
+
+Alert Funnel:
+
+flagged → reviewed → escalated → confirmed fraud → SAR filed
+
+Top Fraud Typologies (stacked or table+bars):
+
+account takeover, card-not-present, merchant collusion, mule, velocity, device spoofing
+
+Top Drivers:
+
+top rules contributing to confirmed fraud
+
+top model features (if available; otherwise “drivers” from rules/features)
+
+Tables (Clickable Rows)
+
+Top risky merchants (with risk score, volume, confirmed fraud count)
+
+Top risky customers (risk score, number of flags, linked cases)
+
+Top risky devices/IPs (device trust level, geo mismatch)
+
+Row click drawer includes:
+
+evidence timeline
+
+links to transactions/cases
+
+suggested action (block / step-up auth / rule tune)
+
+4) AML Tab (Regulator-Ready)
+KPIs
+
+AML alerts count
+
+Escalations
+
+SARs filed
+
+Avg escalation time
+
+Structuring detection count
+
+Sanctions screening hits (if supported)
+
+Charts
+
+AML Alerts trend: alerts vs escalations vs SAR filed
+
+Typology distribution:
+
+structuring/smurfing, high-risk jurisdiction, rapid movement, layering patterns, unusual cash activity
+
+SAR pipeline:
+
+drafted → reviewed → approved → filed
+
+Tables
+
+Highest-risk customers for AML (risk score + typology tags)
+
+Beneficiary / counterparty risk table (top counterparties by exposure)
+
+Rules effectiveness specifically for AML rules
+
+Row drawer must support:
+
+one-click “Draft SAR” (links to AI assistant SAR intent)
+
+evidence list (transactions + typology explanation)
+
+audit log references (who reviewed/approved)
+
+5) Models Tab (MLOps-grade, explainable)
+KPIs
+
+Precision / Recall / F1 (current window)
+
+AUC
+
+Drift indicators (feature drift, prediction drift)
+
+Data quality score
+
+Latency (p50/p95 scoring latency)
+
+Model version in production
+
+Visuals
+
+model performance comparison (existing) + ability to select versions
+
+drift trend chart over time
+
+risk score distribution histogram
+
+confusion matrix (optional)
+
+Interactions
+
+Clicking a metric opens drawer with:
+
+definition, thresholds, last training date
+
+segment performance breakdown (by channel, country, merchant category)
+
+Add “Run backtest” button (if not implemented, create UI stub + explain)
+
+6) Rules Tab (Analytics-grade rules tuning)
+
+Upgrade “Rules Effectiveness” into:
+
+KPIs
+
+total triggers
+
+confirmed fraud rate per rule
+
+noise rate
+
+avg time-to-review per rule
+
+last tuned date
+
+Table Enhancements (Clickable Row)
+
+Columns:
+
+Rule name
+
+Category (Fraud/AML)
+
+Trigger count
+
+True fraud %
+
+Noise %
+
+Net value prevented
+
+Last updated
+
+Status (active)
+
+Row drawer:
+
+rule definition + thresholds
+
+trend of triggers over time
+
+top segments triggered (merchant/country/channel)
+
+“Simulate change” (UI + backend if possible)
+
+“Propose tuning” (creates draft change request)
+
+7) Geography Tab (Add Map + Drilldowns)
+
+Replace simple bars with a real geographic experience.
+
+Required Visual: World/Regional Map ✅
+
+Choropleth map for:
+
+transaction volume
+
+alert rate
+
+confirmed fraud rate
+
+AML risk score
+
+Toggle metric selector
+
+Clicking a country opens drawer:
+
+KPIs for that country
+
+top merchants, channels, typologies
+
+“View transactions” deep link
+
+If a full map library is heavy, use a simplified vector/world map component. Ensure it’s performant.
+
+Add a “Geo anomalies” panel:
+
+IP vs country mismatch rate
+
+impossible travel detections
+
+first-seen country events
+
+8) Channels Tab (Operational + Risk)
+
+Upgrade with:
+
+channel volume distribution (existing)
+
+channel risk rate trend (risk/alerts per 1k txns)
+
+channel-specific false positives
+
+conversion funnel by channel (flag → review → confirm)
+
+Clicking a channel opens drawer with:
+
+top drivers
+
+recommended controls (step-up auth, velocity rule)
+
+top merchants/customers in that channel
+
+9) NEW: Users Tab (User Analytics) ✅
+
+This tab measures platform usage, access risk, and analyst productivity.
+
+KPIs
+
+Total users
+
+Active users (last 7 days)
+
+Privileged users (Admin/Auditor)
+
+MFA adoption %
+
+SSO adoption %
+
+Failed logins (24h)
+
+Locked/suspended users
+
+Charts
+
+Logins over time
+
+Failed login attempts over time
+
+User actions over time (case created, rule edited, export performed)
+
+Analyst throughput:
+
+cases handled per analyst
+
+avg time in review
+
+SLA breaches per analyst/team
+
+Tables (Clickable)
+
+Users with unusual access patterns (e.g., high exports, unusual time)
+
+Top active analysts (activity breakdown)
+
+Role distribution
+
+Row drawer shows:
+
+user profile
+
+roles/permissions
+
+last actions timeline
+
+security posture (MFA/SSO, last password change)
+
+“Suspend user / reset MFA” (admin-only; if backend not implemented, add UI stub)
+
+10) NEW: Operations Tab (SLA + Workflow) ✅
+
+KPIs:
+
+Open alerts, open cases
+
+SLA breach risk %
+
+avg time to triage
+
+avg time to resolution
+
+backlog trend
+
+Charts:
+
+backlog trend (alerts/cases)
+
+SLA compliance trend
+
+case status aging histogram
+
+Tables:
+
+oldest cases
+
+queues by team/analyst
+
+11) NEW: Audit Tab (System & Compliance) ✅
+
+Show audit-ready logs:
+
+Authentication events
+
+Role changes
+
+Rule changes
+
+Export events
+
+Case status changes
+Include:
+
+immutable log indicator
+
+filters by user/action/time
+
+row click shows full event JSON (read-only) + correlation IDs
+
+12) UI/UX Standards (Must Follow)
+
+Keep styling consistent with SnapFort pages
+
+Add tooltips for metric definitions
+
+Use calm colors and clear typography
+
+Prefer side drawers over full page navigation
+
+All analytics must have:
+
+“What it means”
+
+“How it’s computed”
+
+“What to do next” (optional action suggestions)
+
+Performance: charts must render quickly; virtualize large tables.
+
+13) Acceptance Criteria
+
+Every tab renders meaningful analytics and can be filtered by time range.
+
+KPIs, charts, and tables respond to filters.
+
+At least these interactions work:
+
+KPI click → drawer
+
+chart click → drawer
+
+table row click → drawer
+
+evidence links deep-link to Transactions/Cases with prefilled filters
+
+Geography includes a map with drilldowns.
+
+Users analytics tab exists and is functional.
+
+Output Required
+
+Implement the upgraded Analytics page UI
+
+Implement/extend required backend endpoints (or mock data)
+
+Ensure all interactions are clickable and stable
+
+Add reusable components: KPI cards, chart containers, drawer detail panel, export utilities
+
+Provide short inline comments explaining where to swap mock data for real data

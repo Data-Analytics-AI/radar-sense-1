@@ -1,0 +1,470 @@
+You are a Senior Financial Systems Architect, AML Product Designer, Fraud Analytics Lead, and Enterprise UX Engineer.
+
+Upgrade the existing SnapFort Fraud Detection Dashboard into a:
+
+✅ Real-time Fraud Command Center
+✅ Executive Intelligence Dashboard
+✅ Investigator Operational Hub
+✅ AI Decision Support Interface
+
+DO NOT build a demo. Build a production-grade banking dashboard.
+
+🎯 PRIMARY OBJECTIVE
+
+Transform the dashboard from:
+
+👉 Simple metrics display
+
+into:
+
+👉 Actionable Fraud Intelligence Center
+
+The dashboard must answer instantly:
+
+What risks exist NOW?
+
+Where is fraud increasing?
+
+Which customers/entities are dangerous?
+
+Which models are failing?
+
+What should investigators do next?
+
+🧠 CORE DESIGN PRINCIPLE
+
+Every dashboard widget must satisfy:
+
+Insight → Explanation → Decision → Action
+
+
+No passive charts.
+
+🧭 NEW DASHBOARD STRUCTURE
+1️⃣ GLOBAL COMMAND HEADER (NEW)
+
+Add intelligent top bar:
+
+Components
+
+Global AI Search
+
+transactions
+
+customers
+
+alerts
+
+merchants
+
+accounts
+
+devices
+
+cases
+
+System Status Indicators
+
+🟢 Fraud Engine Health
+
+🟢 Data Pipeline Status
+
+🟢 Model Status
+
+🟢 API Connectivity
+
+Real-Time Clock + Processing Latency
+
+Active Analysts Online
+
+AI Assistant Quick Action Button
+
+2️⃣ EXECUTIVE RISK OVERVIEW (SMART KPIs)
+
+Replace static cards with decision cards.
+
+KPIs (Upgrade Existing)
+Transactions Today
+
+Add:
+
+Volume vs baseline
+
+Peak hour detection
+
+Channel breakdown mini-chart
+
+Fraud Detection Rate
+
+Add:
+
+Model vs Rule contribution
+
+Drift warning indicator
+
+Confidence interval
+
+Open Alerts
+
+Add:
+
+Critical alerts %
+
+Analyst workload index
+
+SLA risk indicator
+
+Amount Saved
+
+Add:
+
+Prevented loss trend
+
+Monthly projection
+
+ROI of fraud system
+
+ADD NEW KPI CARDS
+
+✅ Risk Exposure Score
+✅ Suspicious Customers Today
+✅ High Risk Countries Active
+✅ Model Confidence Score
+✅ False Positive Cost Estimate
+✅ Investigation Backlog Index
+
+3️⃣ REAL-TIME FRAUD SITUATIONAL AWARENESS (NEW SECTION)
+Live Threat Monitor
+
+Combine:
+
+🔴 Live Risk Heat Stream
+
+Scrolling events:
+
+Large transfers
+
+Impossible travel
+
+Velocity breaches
+
+Device change
+
+Geo anomalies
+
+Each item clickable → opens investigation drawer.
+
+🌍 Global Risk Map (NEW)
+
+Interactive world map:
+
+Display:
+
+Fraud hotspots
+
+Alert density
+
+Transaction flow
+
+Risk intensity color scale
+
+Hover shows:
+
+Country
+Transactions
+Alerts
+Risk Score
+Loss Exposure
+
+4️⃣ INTELLIGENT TREND ANALYTICS
+
+Upgrade current charts.
+
+Transaction Volume Intelligence
+
+Add:
+
+Channel segmentation
+
+Fraud overlay markers
+
+AI anomaly highlights
+
+Fraud Trend Analysis
+
+Add:
+
+Seasonality detection
+
+Weekly prediction line
+
+Expected vs actual fraud
+
+Risk Distribution (Upgrade)
+
+Convert donut chart into:
+
+Dynamic risk pyramid
+
+Customer segmentation
+
+Exposure amount per risk tier
+
+5️⃣ AI FRAUD INSIGHTS PANEL (NEW ⭐)
+
+Create AI Executive Summary Engine.
+
+AI automatically generates:
+
+Example:
+
+Fraud increased 14% in cross-border mobile transactions.
+Primary driver: new-device payments from Eastern Europe.
+Recommended action:
+• Tighten velocity rule
+• Retrain model on last 30 days
+• Increase monitoring on mobile channel
+
+
+Features:
+
+Explainable AI reasoning
+
+Auto recommendations
+
+One-click actions
+
+6️⃣ INVESTIGATOR OPERATIONS CENTER
+
+Upgrade existing sections.
+
+Live Transaction Feed (Upgrade)
+
+Add:
+
+Risk explanation tooltip
+
+Device fingerprint icon
+
+Geo visualization
+
+Customer risk history badge
+
+Click → Side panel opens:
+
+customer profile
+
+linked accounts
+
+past alerts
+
+graph network
+
+Recent Alerts Panel (Upgrade)
+
+Add:
+
+Priority sorting AI
+
+Suggested investigator assignment
+
+SLA countdown timer
+
+Case escalation prediction
+
+Top Risky Entities (Upgrade)
+
+Split into:
+
+Merchants
+
+Customers
+
+Accounts
+
+Devices
+
+IP Addresses
+
+7️⃣ MODEL HEALTH & AI PERFORMANCE PANEL (NEW)
+
+Display:
+
+Model Health Snapshot
+
+Active model confidence
+
+Drift indicator
+
+Data freshness
+
+Prediction latency
+
+Charts:
+
+Precision trend
+
+Recall trend
+
+False positives over time
+
+Alerts when:
+
+confidence drops
+
+drift increases
+
+performance degrades
+
+8️⃣ USER & ANALYST PERFORMANCE ANALYTICS (NEW)
+
+Add Human Intelligence Analytics.
+
+Show:
+
+Cases closed per analyst
+
+Avg investigation time
+
+Escalation rate
+
+Analyst workload heatmap
+
+Productivity trends
+
+Purpose:
+Operational management.
+
+9️⃣ FRAUD NETWORK SNAPSHOT (NEW)
+
+Mini graph preview:
+
+Connected fraud rings
+
+Shared devices
+
+Mule networks
+
+Merchant clusters
+
+Click → opens Graph Network page.
+
+🔟 REGULATORY & COMPLIANCE STATUS (NEW)
+
+Display:
+
+SAR filings this month
+
+AML alerts trend
+
+Compliance SLA status
+
+Audit readiness indicator
+
+Reporting deadlines
+
+🧠 AI COPILOT PANEL (FLOATING)
+
+Persistent assistant:
+
+Users can ask:
+
+"Show risky customers today"
+
+"Why did fraud increase?"
+
+"Draft SAR"
+
+"Investigate account 123"
+
+AI auto-navigates dashboard.
+
+⚡ PERFORMANCE REQUIREMENTS
+
+Dashboard must:
+
+Load < 2 seconds
+
+Stream real-time data
+
+Support 1000 TPS
+
+Use websocket updates
+
+Lazy-load heavy charts
+
+Cache analytics
+
+🎨 UX REQUIREMENTS
+
+Enterprise banking UI:
+
+Clean
+
+Dark/light mode
+
+Risk color coding
+
+Minimal cognitive load
+
+Action-first design
+
+🔐 SECURITY FEATURES
+
+Add:
+
+Role-based dashboard views
+
+Executive / Analyst / Compliance modes
+
+Audit logging
+
+Sensitive data masking
+
+🏗️ TECH IMPLEMENTATION
+
+Frontend:
+
+React / Next.js
+
+Recharts / ECharts
+
+Mapbox / D3
+
+WebSockets
+
+Backend:
+
+FastAPI
+
+Streaming analytics service
+
+Redis cache
+
+Feature store
+
+AI:
+
+Azure OpenAI integration
+
+Fraud insight generator
+
+LLM decision explanations
+
+✅ FINAL DELIVERABLE
+
+Claude/Replit must output:
+
+Updated dashboard layout
+
+New components
+
+Data schema required
+
+Backend APIs needed
+
+AI analytics logic
+
+Real-time update architecture
+
+Production-ready UI

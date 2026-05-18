@@ -1,0 +1,396 @@
+You are working on SnapFort, a real-time Fraud Detection & AML intelligence platform used by financial institutions.
+
+The current Graph Network page visualizes entity relationships (customers, accounts, devices, merchants, transactions), but it needs major upgrades in:
+
+Interactivity
+
+Investigation usability
+
+Performance
+
+Intelligence surfacing
+
+Visual clarity
+
+Enterprise polish
+
+Do NOT rebuild from scratch. Upgrade and optimize.
+
+🎯 OBJECTIVE
+
+Transform the Graph Network page into:
+
+A high-performance, investigation-grade fraud ring analysis workspace.
+
+It must feel like:
+
+Palantir-style investigation UI
+
+Bank-grade risk tooling
+
+Regulator-ready evidence exploration
+
+🔁 1. CORE FUNCTIONAL UPGRADES
+A) Make Graph Fully Interactive
+
+Each node must:
+
+Be clickable
+
+Show hover tooltip
+
+Open a right-side detail panel
+
+Support multi-select (Shift + Click)
+
+Support box selection
+
+Support right-click context menu
+
+Node Hover Must Show:
+
+Entity Type (Customer / Account / Device / Merchant)
+
+Risk Score
+
+Risk Level Badge
+
+Linked Cases
+
+Transaction Volume (30d)
+
+High-risk indicator (if any)
+
+B) Add Node Detail Side Drawer
+
+When node is clicked:
+
+Open right-side panel with tabs:
+
+1️⃣ Overview
+
+Entity summary
+
+Risk score breakdown
+
+Flags triggered
+
+Related alerts
+
+2️⃣ Transactions
+
+Linked transactions
+
+Risk drivers
+
+Create Case CTA
+
+3️⃣ Connections
+
+Immediate neighbors
+
+Edge weights
+
+Velocity metrics
+
+4️⃣ Cases
+
+Open cases
+
+Escalations
+
+SAR links
+
+C) Add Edge Intelligence
+
+Edges must display:
+
+Relationship type (sent money, shared device, common beneficiary)
+
+Transaction count
+
+Total amount
+
+Velocity indicator
+
+Risk score of relationship
+
+Edge hover must show structured popover.
+
+📊 2. INVESTIGATION CONTROLS PANEL (Top Bar Enhancement)
+
+Upgrade controls to include:
+
+Expand Depth (slider 1–5)
+
+Time filter (24h / 7d / 30d / Custom)
+
+Risk filter (Low / Medium / High / Critical)
+
+Entity type filter (Customer, Account, Device, Merchant)
+
+Show only flagged entities toggle
+
+Freeze layout toggle
+
+Highlight suspicious paths toggle
+
+🧠 3. AI-POWERED NETWORK INSIGHTS PANEL (Upgrade Right Side)
+
+Replace static insights with dynamic intelligence engine.
+
+Each insight card must include:
+
+Insight severity badge
+
+Short explanation
+
+Evidence snippet
+
+Confidence %
+
+“View in Graph” action
+
+“Create Case from Cluster” action
+
+Examples:
+
+Circular fund flow detected
+
+Shared device across high-risk jurisdictions
+
+Velocity spike in connected accounts
+
+Newly formed high-risk cluster
+
+🟢 4. RISK CLUSTER PANEL (Enhance)
+
+Upgrade cluster list:
+
+Each cluster card must show:
+
+Cluster Name
+
+Risk Score
+
+Node Count
+
+Total Value
+
+Velocity Index
+
+Jurisdictions involved
+
+Primary Risk Type (Fraud / AML / Mixed)
+
+Confidence %
+
+Clicking cluster:
+
+Zooms to cluster
+
+Auto-highlights path
+
+Opens cluster detail drawer
+
+🎨 5. VISUAL OPTIMIZATION
+A) Node Visual Encoding
+
+Node size = transaction volume
+Node color = risk level
+Border thickness = risk intensity
+Badge number = open alerts
+
+Color system:
+
+Green → Low
+
+Yellow → Medium
+
+Orange → High
+
+Red → Critical
+
+B) Edge Visual Encoding
+
+Thickness = transaction volume
+
+Red edges = high-risk link
+
+Dashed edges = device sharing
+
+Animated edges = recent activity
+
+C) Improve Layout Stability
+
+Use force-directed layout with stabilization
+
+Avoid constant jittering
+
+Add “Lock Layout” option
+
+Add “Auto-arrange” button
+
+⚡ 6. PERFORMANCE OPTIMIZATION
+
+Implement:
+
+Lazy loading for large graphs
+
+Cluster aggregation for >500 nodes
+
+WebGL rendering if available
+
+Progressive rendering
+
+Node limit warning
+
+If graph exceeds 2000 nodes:
+
+Switch to summarized cluster mode
+
+Offer drill-down
+
+🔍 7. ADVANCED INVESTIGATION TOOLS
+
+Add:
+
+Path Finder Tool:
+
+Select 2 nodes → show shortest/highest-risk path
+
+Ring Detection Button
+
+Community Detection Toggle
+
+Suspicious Flow Simulation
+
+📤 8. ACTION CAPABILITIES
+
+Add toolbar:
+
+Create Case from Selection
+
+Tag Cluster (Fraud Ring / Structuring / Mule Network)
+
+Export Snapshot (PNG / PDF)
+
+Export Graph Data (JSON)
+
+Save Investigation View
+
+📈 9. ADD NETWORK METRICS STRIP (Upgrade KPIs)
+
+Current KPIs:
+
+Total Nodes
+
+Connections
+
+Communities
+
+Risk Clusters
+
+Avg Degree
+
+Add:
+
+High-Risk Nodes %
+
+Suspicious Path Count
+
+Cross-Border Flow Count
+
+Shared Device Count
+
+Velocity Spike Count
+
+All must be clickable filters.
+
+🧩 10. IMPROVE SEARCH FUNCTIONALITY
+
+Search must support:
+
+Transaction ID
+
+Customer ID
+
+Case ID
+
+Device ID
+
+Merchant Name
+
+Partial matches
+
+Auto-suggestions
+
+On search:
+
+Center graph
+
+Highlight node
+
+Expand depth
+
+🛡 11. REGULATOR MODE
+
+Add toggle:
+
+"Compliance View"
+
+When enabled:
+
+Show evidence trails
+
+Show audit timestamps
+
+Show model version
+
+Show rule triggers
+
+Disable layout distortion
+
+🧪 12. ACCEPTANCE TESTS
+
+Graph must:
+
+Allow clicking every node
+
+Show side panel details
+
+Zoom smoothly
+
+Filter dynamically
+
+Handle >1000 nodes
+
+Not freeze browser
+
+Preserve state on back navigation
+
+Work with AI-generated network queries
+
+📦 OUTPUT REQUIRED
+
+Files modified
+
+Graph library used (if changed)
+
+Performance improvements implemented
+
+New components created
+
+Confirmation of interaction improvements
+
+IMPORTANT
+
+Maintain SnapFort design language
+
+Keep UI enterprise-grade
+
+Avoid visual clutter
+
+Keep interaction intuitive for fraud analysts
+
+No emojis in final UI

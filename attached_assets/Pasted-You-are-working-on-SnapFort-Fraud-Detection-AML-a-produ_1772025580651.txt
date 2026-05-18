@@ -1,0 +1,261 @@
+You are working on SnapFort (Fraud Detection & AML), a production-grade platform. Upgrade the existing Models page (Model Performance) to be significantly more detailed, explainable, and operationally useful for ML engineers, risk analysts, and compliance auditors.
+
+0) Non-Negotiables
+
+Keep the current SnapFort design language (clean, bank-grade, minimal).
+
+Do not redesign from scratch—enhance what exists.
+
+Everything must be explainable and auditable.
+
+All actions must be safe: confirmations, role checks, and audit logs.
+
+Implement row/card click interactions and detail drawers where applicable.
+
+Use realistic dummy data if backend endpoints are missing.
+
+1) Page Structure (New IA)
+
+Split the page into 5 sections:
+
+A) “Production Model Overview” (Top)
+
+Replace the single “XGBoost Production Model” panel with a richer Production Model Control Bar:
+
+Active model name + version + stage badge (Production / Staging / Candidate)
+
+“Last deployed”, “Last trained”, “Data window”, “Owner”
+
+“Health status” badge: Healthy / Degraded / Investigate
+
+Buttons:
+
+Promote (Staging → Production) (Admin only)
+
+Rollback (choose previous version) (Admin only)
+
+Retrain (opens retrain wizard)
+
+View Audit Trail
+
+Include top-line KPIs: Precision, Recall, F1, AUC, Latency p95, Throughput, Drift score, Alert yield.
+
+B) “Performance & Risk Impact” (Insight-first)
+
+Add a row of charts/cards below:
+
+Detection vs False Positives trend (time series)
+
+Loss prevented vs actual loss (bar/line)
+
+Precision/Recall trade-off curve (threshold sensitivity)
+
+Confusion matrix (current threshold)
+
+Score distribution by risk band (Low/Med/High/Critical)
+
+Every chart must have:
+
+tooltips (metric definitions)
+
+“Filters applied” indicator (time range, channel, segment)
+
+C) “Drift, Data Quality & Monitoring” (Regulator-ready)
+
+Add a dedicated panel with:
+
+Feature drift (PSI / KS style indicator) by top 10 features
+
+Data quality checks:
+
+missingness %
+
+schema violations
+
+out-of-range values
+
+delayed events / ingestion lag
+
+Model stability:
+
+weekly confidence change
+
+calibration shift
+
+segment degradation (e.g., cross-border web)
+
+Add a “What changed?” insight box:
+
+3–5 bullet facts (no hype) e.g., “Increase in device-risk signals; higher false positives on Mobile in last 48h.”
+
+D) “Model Registry” (Cards become clickable + detail drawer)
+
+Your existing model cards (Logistic Regression, Random Forest, XGBoost, Isolation Forest) must become a Model Registry Table/Card Hybrid with:
+
+Search (name/version/type)
+
+Filters: Model type (supervised/anomaly), stage, owner, trained date, status
+
+Sort by: last trained, AUC, drift, latency
+
+Interaction requirement
+
+Clicking a model card/row opens a right-side Model Detail Drawer (or modal).
+
+Drawer must contain tabs:
+
+Tab 1: Summary
+
+Model purpose (Fraud / AML / Both)
+
+Training dataset snapshot (size, date range, label rate)
+
+Feature count + feature groups
+
+Primary segments used (channels, countries)
+
+Threshold + risk band mapping
+
+Last evaluation + benchmark comparison
+
+Tab 2: Explainability
+
+Global feature importance
+
+Local explanation example (one flagged transaction)
+
+Rule hits vs model contribution (if hybrid scoring)
+
+“Top drivers of high-risk decisions this week”
+
+Tab 3: Operations
+
+Latency p50/p95, error rate, uptime
+
+Inference volume by channel
+
+Alerts generated, escalation rate, confirmed fraud rate
+
+Tab 4: Governance
+
+Model card: objective, limitations, known failure modes
+
+Approval chain (who approved to production)
+
+Audit log timeline (deploy, retrain, rollback, config changes)
+
+Tab 5: Evaluation
+
+Metrics by segment (channel, geography, amount bands)
+
+Stability over time
+
+Threshold simulator (safe sandbox)
+
+E) “Safe Actions” (Retrain + Promote + Rollback)
+
+Replace “Retrain Models” button behavior with a wizard:
+
+Choose model family (XGBoost, RF, etc.)
+
+Choose training window / labels source
+
+Select feature set version
+
+Validation plan (k-fold / time split)
+
+Evaluation gates (min precision, max FPR, latency limits)
+
+Output:
+
+produce a Candidate model in registry
+
+allow Promote to Staging (Admin only)
+
+log everything
+
+Add confirmation dialogs and require reason text for:
+
+Promote
+
+Rollback
+
+Threshold changes
+
+2) Role-Based Access (UI + behavior)
+
+Implement RBAC guardrails:
+
+Admin: promote, rollback, retrain, edit thresholds
+
+ML Engineer: retrain, view monitoring, compare models
+
+Risk Analyst: view explainability + performance + segments
+
+Auditor/Compliance: view governance + audit logs only
+
+Even if backend RBAC is missing, implement UI gating using the user role already shown in your header.
+
+3) “Compare Models” Mode
+
+Add a toggle: Compare
+
+User selects 2–3 models
+
+Side-by-side comparison:
+
+metrics (overall + by segment)
+
+latency
+
+drift
+
+business impact (loss prevented proxy)
+
+Include a clear “Recommended model” only if backed by rules:
+
+“Model A dominates on precision and latency, but underperforms on Mobile cross-border.”
+
+4) Data Contracts (Frontend expectations)
+
+Assume or create placeholder endpoints:
+
+GET /api/models (registry list)
+
+GET /api/models/:id (detail)
+
+GET /api/models/:id/metrics?range=30d
+
+GET /api/models/:id/drift?range=30d
+
+POST /api/models/retrain
+
+POST /api/models/promote
+
+POST /api/models/rollback
+
+GET /api/audit?entity=model&id=:id
+
+If not available, mock responses but keep the contracts clean.
+
+5) UX polish
+
+Keep cards readable, avoid walls of text.
+
+Use drawers for depth, not more page clutter.
+
+Always show “Updated X min ago” and “Data window: …”.
+
+Add empty states + skeleton loading.
+
+Ensure everything is keyboard accessible.
+
+OUTPUT REQUIRED
+
+Update the Models page UI and interactions as specified.
+
+Make model cards/rows clickable and open the detail drawer.
+
+Add monitoring, drift, governance, and retrain workflows.
+
+Ensure production-safe confirmations and audit logging placeholders.

@@ -1,0 +1,123 @@
+You are a Senior Full-Stack Engineer improving an existing SnapFort (Fraud Detection) web app.
+
+GOAL
+Optimize the following pages:
+1) Transactions page
+2) Live Monitoring page
+3) Alerts page
+
+Make every transaction/alert row clickable, and when the chevron/arrow at the far right of a row is clicked, a full “Details” view pops up (drawer or modal). This must work consistently across all three pages.
+
+IMPORTANT UX BEHAVIOR (MUST IMPLEMENT)
+A. Row click:
+- Clicking anywhere on a row (except interactive controls like checkboxes, menus, filters) should open the details view for that item.
+- The row should show hover + focus states (keyboard accessible).
+
+B. Chevron click (arrow beside row):
+- Clicking the chevron should expand/open the details view without navigating away.
+- The chevron should rotate to indicate expanded state.
+- This should NOT trigger row-click twice (stopPropagation / prevent double-open).
+
+C. Keyboard accessibility:
+- Row is focusable (tabIndex=0) and opens on Enter/Space.
+- Chevron is a real button element with aria-expanded, aria-controls.
+
+D. Detail view:
+- Use a right-side drawer if screen width >= 1024px.
+- Use a modal bottom sheet (or full-screen modal) on mobile.
+- Show a skeleton loader while details are fetched.
+- Include a close button and ESC to close.
+- Opening details should update URL (optional but preferred) via query param:
+  - /transactions?selected=TXN-123
+  - /alerts?selected=ALT-123
+  - /live-monitoring?selected=TXN-123
+- On refresh, the selected item auto-opens if the query param exists.
+
+E. Data fetching strategy:
+- List endpoints remain as-is.
+- Add “details” endpoints (if not existing) for each entity type and fetch by ID:
+  - GET /api/transactions/:id
+  - GET /api/alerts/:id
+  - (Live Monitoring uses transactions stream; details should call /api/transactions/:id)
+- Use caching so opening the same item again does not refetch unless stale.
+- Handle errors with a friendly inline message + retry.
+
+SCOPE (PAGES)
+1) Transactions page:
+- Table rows are currently rendered with a rightmost arrow icon.
+- Implement clickable row + chevron behavior.
+- Details drawer shows:
+  - Transaction summary (ID, timestamp, channel, type, amount, currency, status)
+  - Customer (ID, name if available, risk tier)
+  - Merchant (name, MCC)
+  - Risk score + confidence
+  - Risk drivers (chips with weights)
+  - Rules hit (if available)
+  - Geo/device/IP info if available
+  - Raw payload (collapsible JSON viewer)
+  - “Create Alert” or “Open Case” CTA buttons (if present in system)
+
+2) Live Monitoring page:
+- Live stream list/table should behave like Transactions page.
+- New rows arriving should not break selection state.
+- If an item is currently selected, keep drawer open; highlight the selected row.
+
+3) Alerts page:
+- Alerts list rows are clickable + arrow opens details.
+- Details drawer shows:
+  - Alert summary (ID, type Fraud/Rule/Model, severity, status, created time)
+  - Linked transaction(s) and customer
+  - Contributing factors / risk drivers
+  - Investigation timeline (status changes, assignments, notes if available)
+  - Actions: Assign, Change Status, Create Case, Add Note (wire to existing endpoints or create stub endpoints if missing)
+
+UI COMPONENTS (IMPLEMENT CONSISTENTLY)
+- Build a reusable component:
+  - <ClickableDataRow />
+  - <DetailsDrawerOrModal />
+  - <TransactionDetailsPanel />
+  - <AlertDetailsPanel />
+- The table/list should pass only the ID; details panels fetch full object.
+- Use a unified design system: same spacing, typography, chips/badges, status colors.
+
+STATE MANAGEMENT
+- Use a single selected state per page:
+  - selectedId: string | null
+  - selectedType: "transaction" | "alert"
+  - isOpen: boolean
+- Persist selection in URL query param and restore on load.
+- Ensure no memory leaks / stale subscriptions in Live Monitoring.
+
+BACKEND (IF NEEDED)
+- If the backend lacks details endpoints, implement them.
+- Use the existing DB/storage layer (whatever exists) to return a full record.
+- Response shape must include fields used in the details panel.
+- Add server-side validation and proper status codes (404 if not found).
+- Do not break existing list endpoints.
+
+QUALITY BAR
+- No UI regressions; filters/search/export buttons remain intact.
+- Works on desktop and mobile.
+- Unit tests for the row-click + chevron-click behavior (at least minimal).
+- E2E smoke test if test framework exists:
+  - Open Transactions → click a row → drawer opens with correct ID
+  - Click chevron → drawer opens; chevron rotates
+  - Close drawer → selection clears
+  - Reload with ?selected=... → auto-opens
+
+DELIVERABLES
+1) Implement the reusable row + detail pattern across the 3 pages.
+2) Add/confirm backend endpoints for item details.
+3) Update routing/URL state handling.
+4) Add minimal tests.
+
+OUTPUT REQUIREMENTS
+- Make all code changes directly in the repo.
+- Summarize what you changed and where (files touched).
+- Provide a short manual QA checklist.
+
+Start by:
+1) Inspecting current UI components for Transactions, Live Monitoring, Alerts.
+2) Identifying the current arrow/chevron element and row component.
+3) Implementing the reusable details drawer/modal.
+4) Wiring up selection state and details fetching.

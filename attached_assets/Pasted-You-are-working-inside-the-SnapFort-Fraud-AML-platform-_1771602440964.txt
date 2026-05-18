@@ -1,0 +1,596 @@
+You are working inside the SnapFort Fraud & AML platform.
+
+Objective
+
+Transform the current basic Settings page into a comprehensive, enterprise-grade configuration center suitable for:
+
+Banks
+
+Fintechs
+
+Compliance teams
+
+Risk managers
+
+DevOps
+
+IT Security
+
+Regulators
+
+The Settings page must be:
+
+Secure
+
+Role-restricted (Admin / Super Admin only)
+
+Auditable
+
+Version-controlled
+
+Safe for production systems
+
+Environment-aware (Dev / Staging / Prod)
+
+Do NOT break existing settings. Extend and restructure cleanly.
+
+1️⃣ GLOBAL SETTINGS STRUCTURE
+
+Replace the single long page with a left-side tabbed settings layout:
+
+Settings Categories (Sidebar inside Settings):
+
+Risk Configuration
+
+Notifications & Alerts
+
+Data Retention & Compliance
+
+Integrations
+
+Core Banking APIs ✅ NEW
+
+Database & Storage ✅ NEW
+
+Model & AI Configuration ✅ NEW
+
+Security & Access Controls ✅ NEW
+
+Workflow & Escalations
+
+Audit & Logging
+
+Environment & Deployment
+
+Feature Flags
+
+Backup & Recovery
+
+System Health
+
+Advanced
+
+Each section should:
+
+Be collapsible
+
+Load independently
+
+Save independently
+
+Log changes in Audit
+
+2️⃣ RISK CONFIGURATION (Upgrade Existing)
+
+Enhance current risk thresholds:
+
+Add:
+
+Risk Score Formula Preview
+
+Alert Threshold (score that triggers alert)
+
+Auto-case creation threshold
+
+Auto-block threshold
+
+Dynamic threshold toggle (percentile-based)
+
+Country-specific thresholds
+
+Channel-specific thresholds
+
+Merchant-category thresholds
+
+Add:
+
+Risk Simulation Tool (UI only if backend not available):
+
+Enter score
+
+Show classification
+
+Show triggered actions
+
+All threshold changes must:
+
+Show before/after diff
+
+Require confirmation modal
+
+Log user ID + timestamp
+
+3️⃣ CORE BANKING API CONFIGURATION (NEW)
+
+Add secure integration management for:
+
+Supported Core Banking Types:
+
+REST API
+
+SOAP
+
+ISO 8583
+
+Kafka stream
+
+File-based (SFTP batch)
+
+Fields:
+
+Base URL
+
+API Version
+
+Authentication Type:
+
+OAuth2
+
+mTLS
+
+API Key
+
+JWT
+
+Basic Auth (discouraged)
+
+Client ID
+
+Client Secret (masked + vault stored)
+
+Certificate upload (for mTLS)
+
+Timeout
+
+Retry attempts
+
+Circuit breaker threshold
+
+Health Check:
+
+“Test Connection” button
+
+Show:
+
+Latency
+
+Status
+
+Auth validity
+
+Last sync time
+
+Webhook Configuration:
+
+Outbound webhook URL
+
+Secret key
+
+Event types (alerts, case updates, SAR filed, rule updated)
+
+Retry policy
+
+Signature verification
+
+All secrets must:
+
+Be masked
+
+Stored encrypted
+
+Not exposed in frontend state
+
+4️⃣ DATABASE & STORAGE CONNECTIONS (NEW)
+
+Add database configuration section:
+
+Primary Transaction DB:
+
+Type (Postgres / MySQL / SQL Server / Oracle)
+
+Host
+
+Port
+
+DB name
+
+SSL required toggle
+
+Username
+
+Password (vault stored)
+
+Pool size
+
+Max connections
+
+Add:
+
+Read replica config
+
+Analytics DB config (optional)
+
+Data lake connection (S3/Azure Blob/GCS)
+
+Object storage for evidence
+
+Add:
+
+“Test DB Connection” button
+
+Show:
+
+Ping time
+
+Connection pool status
+
+Last successful query
+
+Add:
+
+Encryption at rest toggle indicator
+
+Row-level encryption status
+
+Data masking toggle
+
+5️⃣ MODEL & AI CONFIGURATION (NEW)
+Active Model:
+
+Model name
+
+Version
+
+Last trained date
+
+Deployment environment
+
+Confidence threshold
+
+Risk weighting multipliers
+
+AI Assistant:
+
+Provider (Azure OpenAI / OpenAI / Internal LLM)
+
+Model name
+
+Temperature
+
+Max tokens
+
+Prompt version
+
+RAG enabled toggle
+
+Model Monitoring:
+
+Drift threshold
+
+Auto-retraining toggle
+
+Performance degradation alert %
+
+Feature Store:
+
+Source
+
+Sync frequency
+
+Feature freshness threshold
+
+Add:
+
+“Shadow Model Testing” toggle
+
+“Champion / Challenger” selector
+
+All model changes:
+
+Must log version diff
+
+Require confirmation
+
+Optionally require 2nd approval
+
+6️⃣ SECURITY & ACCESS CONTROLS (NEW)
+
+Add:
+
+Authentication
+
+SSO provider (Azure AD, Okta, Google)
+
+Enforce MFA toggle
+
+Password policy (min length, complexity)
+
+Session timeout (minutes)
+
+Concurrent session limit
+
+Access Controls
+
+Role creation
+
+Permission matrix
+
+IP whitelisting
+
+Geo-blocking
+
+API Security
+
+API rate limits
+
+IP restriction
+
+Token expiry duration
+
+Security Posture Dashboard:
+
+Show:
+
+MFA adoption %
+
+Failed login attempts (24h)
+
+Suspicious login attempts
+
+Locked accounts
+
+7️⃣ DATA RETENTION & COMPLIANCE (Upgrade)
+
+Add:
+
+Country-based retention policies
+
+Case retention
+
+SAR retention
+
+Data anonymization policy
+
+Right-to-be-forgotten toggle
+
+Regulatory profile selector:
+
+FATF
+
+GDPR
+
+CBN
+
+SEC
+
+FinCEN
+
+Add:
+
+Auto-delete scheduler
+
+Archive storage destination
+
+8️⃣ WORKFLOW & ESCALATIONS (NEW)
+
+Add:
+
+SLA thresholds per severity
+
+Escalation tiers
+
+Auto-assign logic
+
+Escalation notification routing
+
+Reassignment timeout
+
+Add:
+
+AI-assisted escalation recommendation toggle
+
+9️⃣ AUDIT & LOGGING (Upgrade)
+
+Add:
+
+Log retention period
+
+Immutable log toggle
+
+Log export
+
+Log streaming endpoint
+
+SIEM integration (Splunk / Sentinel)
+
+Display:
+
+Last config change
+
+Who changed what
+
+Change diff viewer
+
+🔟 ENVIRONMENT & DEPLOYMENT (NEW)
+
+Add:
+
+Environment selector (Dev / Staging / Prod)
+
+Feature isolation per environment
+
+Debug mode toggle
+
+Maintenance mode toggle
+
+System version
+
+Build number
+
+Container version
+
+Add:
+
+Docker image tag
+
+Kubernetes namespace (if applicable)
+
+1️⃣1️⃣ FEATURE FLAGS (NEW)
+
+Add feature toggles:
+
+Graph AI
+
+Auto-SAR drafting
+
+Real-time streaming
+
+Auto-block
+
+Shadow models
+
+Advanced analytics
+
+Allow:
+
+Gradual rollout %
+
+Tenant-specific activation
+
+1️⃣2️⃣ BACKUP & RECOVERY (NEW)
+
+Add:
+
+Backup frequency
+
+Snapshot retention
+
+Restore point selection
+
+Disaster recovery region
+
+Failover toggle
+
+Replication lag monitor
+
+1️⃣3️⃣ SYSTEM HEALTH (NEW)
+
+Display:
+
+API uptime %
+
+DB uptime %
+
+Event queue backlog
+
+Average scoring latency
+
+Model inference time
+
+CPU/memory usage (if available)
+
+Add:
+
+System restart (Admin only)
+
+Clear cache button
+
+1️⃣4️⃣ UX & SAFETY REQUIREMENTS
+
+Must implement:
+
+Confirmation modals for destructive changes
+
+Field validation
+
+Masked secrets
+
+Role-based visibility
+
+Change diff preview
+
+Audit log entry per save
+
+Save button per section (not global only)
+
+Add:
+
+Unsaved changes warning
+
+Inline help tooltips
+
+“Reset to default” per section
+
+1️⃣5️⃣ Backend Requirements
+
+Create/extend endpoints:
+
+/api/settings/risk
+
+/api/settings/core-banking
+
+/api/settings/database
+
+/api/settings/model
+
+/api/settings/security
+
+/api/settings/workflow
+
+/api/settings/compliance
+
+/api/settings/audit
+
+/api/settings/environment
+
+/api/settings/feature-flags
+
+/api/settings/system
+
+Each must:
+
+Validate input
+
+Require admin role
+
+Log change in audit table
+
+Store secrets encrypted
+
+1️⃣6️⃣ Acceptance Criteria
+
+Settings are grouped logically.
+
+Core banking API configuration exists with test connection.
+
+Database configuration exists with health check.
+
+Model config supports version control.
+
+Secrets are masked.
+
+All changes logged.
+
+Admin-only protection enforced.
+
+UI remains clean and bank-grade.

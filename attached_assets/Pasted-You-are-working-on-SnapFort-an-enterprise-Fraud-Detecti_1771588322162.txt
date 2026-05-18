@@ -1,0 +1,339 @@
+You are working on SnapFort, an enterprise Fraud Detection & AML platform.
+Upgrade the existing User Management page into a fully comprehensive, regulator-ready User & Access Management module.
+
+Do NOT redesign the whole app—enhance what exists, keep styling consistent, and ensure every interaction works.
+
+1) PAGE GOALS (WHAT THIS PAGE MUST SUPPORT)
+
+This page must support:
+
+Creating and managing users (internal + external)
+
+Role-Based Access Control (RBAC)
+
+Permissions and access policy visibility
+
+Authentication settings (SSO, MFA)
+
+Session management
+
+Audit and compliance logging
+
+Segregation of Duties (SoD) + approval workflow for sensitive roles
+
+Secure user lifecycle: invite → activate → suspend → deactivate → delete
+
+2) UI/UX UPGRADES (KEEP CURRENT LAYOUT, MAKE IT ENTERPRISE)
+A) Top Summary KPI Cards (Replace Existing)
+
+Change KPIs to include:
+
+Total Users
+
+Active Users
+
+Admins / Privileged Users
+
+MFA Enabled (%)
+
+SSO Enabled (count)
+
+Locked / Suspended Users
+
+Failed Login Attempts (last 24h)
+
+Pending Access Requests / Approvals
+
+Each KPI:
+
+Must be clickable to filter the user table accordingly
+
+Include a tooltip explaining what it means
+
+B) Add “User Management Toolbar”
+
+Add a toolbar above the table with:
+
+Search (name, email, role)
+
+Filters:
+
+Role
+
+Status (Active/Suspended/Locked/Invited/Deactivated)
+
+MFA (Enabled/Disabled)
+
+SSO (Enabled/Disabled)
+
+Last Login range
+
+Department / Team (if present)
+
+Sort:
+
+Last login
+
+Risk actions performed (optional)
+
+Privilege level
+
+“Saved Views” dropdown (e.g., “Privileged Accounts”, “Inactive 30 days”, “MFA Disabled”)
+
+3) USER TABLE UPGRADE (MAKE IT REAL IAM)
+
+Replace the table columns with:
+
+User (Name + Email + Avatar)
+
+Role(s)
+
+Privilege Level badge (Standard / Elevated / Admin)
+
+Status badge (Active / Invited / Suspended / Locked / Deactivated)
+
+MFA status badge (On/Off)
+
+SSO badge (Azure AD / Okta / None)
+
+Last Login (timestamp + location/IP tooltip)
+
+Last Activity (last action performed in app)
+
+Failed Logins (last 24h)
+
+Actions (kebab menu)
+
+Row Interaction Requirement:
+
+Clicking a user row must open a User Detail Drawer (right-side panel) — no dead clicks.
+
+4) USER DETAIL DRAWER (CRITICAL)
+
+When a user is clicked, open a drawer with tabs:
+
+TAB 1 — Profile
+
+Full name
+
+Email
+
+Department
+
+Team
+
+Title
+
+Created date
+
+Created by
+
+Status
+
+Last login details (time, IP, geo)
+
+Device info (if captured)
+
+TAB 2 — Roles & Permissions (RBAC)
+
+Assigned roles (multi-select)
+
+Permissions preview for each role (read-only list)
+
+Effective permissions summary (combined)
+
+“Compare Permissions” button vs another user (optional)
+
+TAB 3 — Security
+
+MFA enabled toggle (admin only)
+
+Reset MFA
+
+Force password reset
+
+Require password change at next login
+
+Lock/unlock account
+
+Active sessions list:
+
+device
+
+IP
+
+login time
+
+“Terminate session” action
+
+TAB 4 — Audit Activity
+
+Timeline of user actions in SnapFort:
+
+viewed transaction
+
+created case
+
+updated rule
+
+exported report
+
+created user
+
+Export audit log button
+
+TAB 5 — Approvals / SoD (Segregation of Duties)
+
+For privileged roles:
+
+Require approval workflow:
+
+request submitted
+
+approver
+
+approval status
+
+reason text box
+
+Store approval history
+
+5) ADD USER FLOW (MODAL OR PAGE)
+
+Clicking “Add User” should open a modal with:
+
+Name
+
+Email
+
+Role(s)
+
+Department / Team
+
+Auth method:
+
+Local
+
+SSO
+
+MFA requirement checkbox
+
+Invite message (optional)
+
+“Send invite” CTA
+
+After creation:
+
+user status is “Invited”
+
+first login activates the user
+
+6) ROLE MANAGEMENT (OPTIONAL SECTION OR LINK)
+
+Add a “Manage Roles” button (admin only) that opens a Roles page or modal:
+
+List roles: Admin, Risk Analyst, AML Analyst, Compliance, Auditor, Viewer
+
+Each role shows:
+
+description
+
+permission count
+
+assigned users count
+
+Allow creating custom roles (optional)
+
+Permissions should be grouped:
+
+Monitoring
+
+Investigations
+
+Rules
+
+Models
+
+Analytics
+
+Admin
+
+7) PERMISSIONS MODEL (IMPLEMENTATION)
+
+Implement RBAC using:
+
+roles table
+
+permissions table
+
+role_permissions join
+
+user_roles join
+
+Permissions must be enforced on:
+
+route access
+
+UI controls (hide/disable)
+
+backend endpoints (authorization middleware)
+
+8) AUDIT LOGGING (MANDATORY)
+
+Every sensitive action must be logged:
+
+user created
+
+role changed
+
+user suspended/activated
+
+MFA reset
+
+password reset
+
+session termination
+
+export actions
+
+rule edits
+
+Logs must capture:
+
+actor user
+
+target user
+
+timestamp
+
+action type
+
+IP (if available)
+
+9) QUALITY REQUIREMENTS
+
+No broken click events
+
+No UI dead zones
+
+Clean enterprise styling (no flashy animations)
+
+Responsive layout (desktop + tablet)
+
+Strong empty states (e.g., “No suspended users found”)
+
+Use consistent SnapFort typography + color system
+
+Add loading states, error states
+
+10) OUTPUT EXPECTED FROM YOU
+
+List of files modified
+
+New components created (Drawer, Modals, Filters)
+
+Backend endpoints created/updated
+
+Database schema changes (if any)
+
+Summary of the user management module behavior
