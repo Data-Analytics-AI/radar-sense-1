@@ -453,6 +453,9 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true, service: "snapfort", uptime: process.uptime(), ts: new Date().toISOString() });
 });
 
+// ---------- data routes (Huawei RDS / Drizzle) ----------
+registerDataRoutes(app);
+
 // ---------- static (prod) ----------
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -467,8 +470,7 @@ if (isProduction) {
   });
 }
 
-// ---------- data routes (Huawei RDS / Drizzle) ----------
-registerDataRoutes(app);
+
 
 async function initDb(): Promise<void> {
   if (!isDbConfigured()) {
